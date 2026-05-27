@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prenotello — Prenotazioni senza commissioni</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -23,14 +24,13 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--cream);
     color: var(--ink);
     overflow-x: hidden;
     cursor: none;
   }
 
-  /* Custom cursor */
   .cursor {
     width: 12px; height: 12px;
     background: var(--accent);
@@ -44,7 +44,6 @@
   }
   .cursor.big { width: 40px; height: 40px; }
 
-  /* NAV */
   nav {
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.5rem 4rem;
@@ -54,9 +53,9 @@
   }
 
   .logo {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Fraunces', serif;
     font-size: 1.5rem; font-weight: 800;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     color: var(--ink);
     text-decoration: none;
   }
@@ -75,12 +74,11 @@
     padding: 0.6rem 1.4rem;
     border-radius: 100px;
     font-size: 0.85rem !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     transition: background 0.2s !important;
   }
   .nav-cta:hover { background: var(--accent) !important; color: white !important; }
 
-  /* HERO */
   .hero {
     min-height: 92vh;
     display: grid;
@@ -109,28 +107,25 @@
     background: var(--warm); border: 1px solid var(--border);
     padding: 0.35rem 0.9rem;
     border-radius: 100px;
-    font-size: 0.78rem; font-weight: 500;
+    font-size: 0.78rem; font-weight: 600;
     color: var(--muted);
     margin-bottom: 2rem;
     opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
   }
-  .tag-dot {
-    width: 6px; height: 6px;
-    background: var(--accent2); border-radius: 50%;
-  }
+  .tag-dot { width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; }
 
   h1 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Fraunces', serif;
     font-size: clamp(2.8rem, 5vw, 4.2rem);
     font-weight: 800;
     line-height: 1.05;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
     margin-bottom: 1.5rem;
     opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
   }
 
   h1 em {
-    font-style: normal;
+    font-style: italic;
     color: var(--accent);
     position: relative;
     display: inline-block;
@@ -146,12 +141,12 @@
   }
 
   .hero-sub {
-    font-size: 1.1rem;
-    line-height: 1.7;
+    font-size: 1.05rem;
+    line-height: 1.75;
     color: var(--muted);
     max-width: 480px;
     margin-bottom: 2.5rem;
-    font-weight: 300;
+    font-weight: 400;
     opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
   }
 
@@ -167,7 +162,7 @@
     border: 1.5px solid var(--border);
     border-radius: 12px;
     background: var(--card);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.9rem;
     color: var(--ink);
     outline: none;
@@ -182,9 +177,9 @@
     color: white;
     border: none;
     border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: none;
     transition: transform 0.2s, background 0.2s;
     white-space: nowrap;
@@ -199,7 +194,6 @@
   }
   .hero-note strong { color: var(--accent2); }
 
-  /* Mock UI */
   .hero-right {
     position: relative;
     opacity: 0; animation: fadeIn 1s 0.8s forwards;
@@ -221,25 +215,17 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .mock-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: 0.9rem;
-  }
-
-  .mock-date {
-    font-size: 0.75rem; color: var(--muted);
-  }
+  .mock-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 0.9rem; }
+  .mock-date { font-size: 0.75rem; color: var(--muted); }
 
   .mock-days {
     display: grid; grid-template-columns: repeat(7, 1fr);
     gap: 0.3rem; margin-bottom: 1.2rem;
   }
-
   .mock-day {
     text-align: center;
     font-size: 0.65rem; color: var(--muted);
-    padding: 0.2rem 0;
-    font-weight: 500;
+    padding: 0.2rem 0; font-weight: 500;
   }
 
   .mock-slots { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -250,32 +236,14 @@
     border-radius: 10px;
     font-size: 0.8rem;
   }
+  .mock-slot.booked { background: #f0f7f3; border: 1px solid #c8e6d8; }
+  .mock-slot.free { background: var(--warm); border: 1px dashed var(--border); color: var(--muted); }
+  .mock-slot.reminder { background: #fff5f2; border: 1px solid #fdd8cc; }
 
-  .mock-slot.booked {
-    background: #f0f7f3;
-    border: 1px solid #c8e6d8;
-  }
-  .mock-slot.free {
-    background: var(--warm);
-    border: 1px dashed var(--border);
-    color: var(--muted);
-  }
-  .mock-slot.reminder {
-    background: #fff5f2;
-    border: 1px solid #fdd8cc;
-  }
-
-  .slot-time {
-    font-weight: 600; font-size: 0.75rem;
-    min-width: 40px; color: var(--ink);
-  }
-
+  .slot-time { font-weight: 700; font-size: 0.75rem; min-width: 40px; color: var(--ink); }
   .slot-name { flex: 1; }
 
-  .slot-badge {
-    font-size: 0.65rem; padding: 0.2rem 0.5rem;
-    border-radius: 100px; font-weight: 500;
-  }
+  .slot-badge { font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 100px; font-weight: 600; }
   .badge-green { background: #c8e6d8; color: #1a5c35; }
   .badge-orange { background: #fdd8cc; color: #8a2e10; }
   .badge-gray { background: var(--border); color: var(--muted); }
@@ -291,7 +259,6 @@
     font-size: 0.75rem;
     max-width: 180px;
   }
-
   .mock-floating .notif-icon { font-size: 1.2rem; margin-bottom: 0.3rem; }
   .mock-floating strong { display: block; font-size: 0.8rem; margin-bottom: 0.2rem; }
   .mock-floating span { color: var(--muted); font-size: 0.72rem; }
@@ -299,8 +266,7 @@
   .mock-floating2 {
     position: absolute;
     bottom: -16px; left: -16px;
-    background: var(--ink);
-    color: white;
+    background: var(--ink); color: white;
     border-radius: 14px;
     padding: 0.7rem 1rem;
     font-size: 0.72rem;
@@ -309,37 +275,29 @@
   }
   .mock-floating2 strong { font-size: 1.1rem; }
 
-  /* STATS BAR */
   .stats-bar {
-    background: var(--ink);
-    color: var(--cream);
+    background: var(--ink); color: var(--cream);
     padding: 1.2rem 4rem;
     display: flex; gap: 4rem; align-items: center;
     overflow: hidden;
   }
-
   .stat-item { display: flex; align-items: baseline; gap: 0.5rem; }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.8rem; font-weight: 800;
-    color: white;
-  }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 800; color: white; }
   .stat-label { font-size: 0.8rem; color: #9a9080; }
   .stat-div { width: 1px; height: 30px; background: #3a3830; flex-shrink: 0; }
 
-  /* PROBLEM SECTION */
   .section { padding: 6rem 4rem; }
 
   .section-label {
-    font-size: 0.75rem; font-weight: 600;
+    font-size: 0.75rem; font-weight: 700;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--accent); margin-bottom: 1rem;
   }
 
   h2 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Fraunces', serif;
     font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 800; letter-spacing: -0.03em;
+    font-weight: 700; letter-spacing: -0.02em;
     line-height: 1.1; margin-bottom: 1.5rem;
   }
 
@@ -356,46 +314,23 @@
     position: relative;
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  .problem-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-  }
+  .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .problem-card.highlight { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 
-  .problem-card.highlight {
-    background: var(--ink);
-    color: var(--cream);
-    border-color: var(--ink);
-  }
-
-  .prob-icon {
-    font-size: 1.8rem; margin-bottom: 1rem;
-  }
-
-  .prob-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem; font-weight: 700;
-    margin-bottom: 0.6rem;
-  }
-
-  .prob-text {
-    font-size: 0.88rem; line-height: 1.7;
-    color: var(--muted);
-  }
+  .prob-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .prob-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .prob-text { font-size: 0.88rem; line-height: 1.75; color: var(--muted); }
   .problem-card.highlight .prob-text { color: #9a9080; }
 
   .prob-number {
     position: absolute; top: 1.5rem; right: 1.5rem;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Fraunces', serif;
     font-size: 2.5rem; font-weight: 800;
     color: var(--border); line-height: 1;
   }
   .problem-card.highlight .prob-number { color: #3a3830; }
 
-  /* COMPARE */
-  .compare-section {
-    padding: 5rem 4rem;
-    background: var(--warm);
-  }
+  .compare-section { padding: 5rem 4rem; background: var(--warm); }
 
   .compare-table {
     margin-top: 3rem;
@@ -411,11 +346,7 @@
     padding: 1.2rem 2rem;
     font-size: 0.85rem; font-weight: 500;
   }
-  .compare-head .col-highlight {
-    color: var(--accent);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-  }
+  .compare-head .col-highlight { color: var(--accent); font-family: 'Fraunces', serif; font-weight: 700; }
 
   .compare-row {
     display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -426,7 +357,6 @@
   }
   .compare-row:last-child { border-bottom: none; }
   .compare-row:hover { background: var(--warm); }
-
   .compare-row .feature { color: var(--muted); }
   .compare-row .col-highlight { font-weight: 600; color: var(--ink); }
 
@@ -434,7 +364,6 @@
   .cross { color: #c44; font-size: 1rem; }
   .partial { color: #e0a020; font-size: 0.75rem; font-style: italic; }
 
-  /* FEATURES */
   .features-section { padding: 6rem 4rem; }
 
   .features-grid {
@@ -449,38 +378,20 @@
     background: var(--card);
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  .feat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.07);
-  }
+  .feat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
 
   .feat-icon {
     width: 44px; height: 44px;
     background: var(--warm);
     border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-    margin-bottom: 1.2rem;
+    font-size: 1.2rem; margin-bottom: 1.2rem;
   }
 
-  .feat-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem; font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
+  .feat-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .feat-text { font-size: 0.88rem; line-height: 1.75; color: var(--muted); }
 
-  .feat-text {
-    font-size: 0.85rem; line-height: 1.7;
-    color: var(--muted);
-  }
-
-  /* PRICING */
-  .pricing-section {
-    padding: 6rem 4rem;
-    background: var(--ink);
-    color: var(--cream);
-  }
-
+  .pricing-section { padding: 6rem 4rem; background: var(--ink); color: var(--cream); }
   .pricing-section h2 { color: white; }
   .pricing-section .section-label { color: #c8a87a; }
 
@@ -498,90 +409,52 @@
     transition: transform 0.2s;
   }
   .price-card:hover { transform: translateY(-4px); }
-
-  .price-card.featured {
-    background: var(--card);
-    color: var(--ink);
-    border-color: var(--accent);
-    border-width: 2px;
-  }
+  .price-card.featured { background: var(--card); color: var(--ink); border-color: var(--accent); border-width: 2px; }
 
   .price-badge {
     position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--accent);
-    color: white;
-    font-size: 0.7rem; font-weight: 600;
-    padding: 0.2rem 0.8rem;
-    border-radius: 100px;
-    letter-spacing: 0.05em;
+    background: var(--accent); color: white;
+    font-size: 0.7rem; font-weight: 700;
+    padding: 0.2rem 0.8rem; border-radius: 100px; letter-spacing: 0.05em;
   }
 
-  .price-name {
-    font-size: 0.8rem; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: #7a7060; margin-bottom: 1rem;
-  }
+  .price-name { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #7a7060; margin-bottom: 1rem; }
   .price-card.featured .price-name { color: var(--muted); }
 
-  .price-amount {
-    font-family: 'Syne', sans-serif;
-    font-size: 3rem; font-weight: 800;
-    color: white; line-height: 1;
-    margin-bottom: 0.3rem;
-  }
+  .price-amount { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 800; color: white; line-height: 1; margin-bottom: 0.3rem; }
   .price-card.featured .price-amount { color: var(--ink); }
 
-  .price-period {
-    font-size: 0.8rem; color: #7a7060;
-    margin-bottom: 1.5rem;
-  }
+  .price-period { font-size: 0.8rem; color: #7a7060; margin-bottom: 1.5rem; }
   .price-card.featured .price-period { color: var(--muted); }
 
   .price-features {
     list-style: none;
     display: flex; flex-direction: column; gap: 0.6rem;
-    margin-bottom: 1.8rem;
-    font-size: 0.85rem;
+    margin-bottom: 1.8rem; font-size: 0.88rem;
   }
-
-  .price-features li {
-    display: flex; align-items: center; gap: 0.5rem;
-    color: #c8c0b0;
-  }
+  .price-features li { display: flex; align-items: center; gap: 0.5rem; color: #c8c0b0; }
   .price-card.featured .price-features li { color: var(--muted); }
   .price-features li::before { content: '✓'; color: var(--accent2); font-weight: 700; }
 
   .btn-outline {
-    width: 100%;
-    padding: 0.85rem;
-    border: 1.5px solid #3a3830;
-    border-radius: 12px;
-    background: transparent;
-    color: var(--cream);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem; font-weight: 500;
-    cursor: none;
-    transition: background 0.2s, border-color 0.2s;
-    text-align: center;
+    width: 100%; padding: 0.85rem;
+    border: 1.5px solid #3a3830; border-radius: 12px;
+    background: transparent; color: var(--cream);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 500; cursor: none;
+    transition: background 0.2s, border-color 0.2s; text-align: center;
   }
   .btn-outline:hover { background: #3a3830; border-color: #5a5848; }
 
   .btn-accent {
-    width: 100%;
-    padding: 0.85rem;
-    border: none;
-    border-radius: 12px;
-    background: var(--accent);
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem; font-weight: 500;
-    cursor: none;
-    transition: background 0.2s, transform 0.2s;
-    text-align: center;
+    width: 100%; padding: 0.85rem; border: none; border-radius: 12px;
+    background: var(--accent); color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 600; cursor: none;
+    transition: background 0.2s, transform 0.2s; text-align: center;
   }
   .btn-accent:hover { background: #b8421f; transform: translateY(-1px); }
 
-  /* TESTIMONIALS */
   .testimonials-section { padding: 6rem 4rem; }
 
   .testi-grid {
@@ -589,143 +462,74 @@
     gap: 1.5rem; margin-top: 3rem;
   }
 
-  .testi-card {
-    padding: 2rem;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    background: var(--card);
-  }
-
+  .testi-card { padding: 2rem; border: 1px solid var(--border); border-radius: 16px; background: var(--card); }
   .testi-stars { color: #e0a020; margin-bottom: 1rem; font-size: 0.9rem; }
-
-  .testi-text {
-    font-size: 0.9rem; line-height: 1.7;
-    color: var(--muted);
-    font-style: italic;
-    margin-bottom: 1.2rem;
-  }
-
+  .testi-text { font-size: 0.9rem; line-height: 1.75; color: var(--muted); font-style: italic; margin-bottom: 1.2rem; }
   .testi-author { display: flex; align-items: center; gap: 0.8rem; }
-
-  .testi-avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem; font-weight: 700;
-    color: white;
-  }
-
+  .testi-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: white; }
   .testi-name { font-size: 0.85rem; font-weight: 600; }
   .testi-role { font-size: 0.75rem; color: var(--muted); }
 
-  /* CTA FINAL */
-  .cta-section {
-    padding: 7rem 4rem;
-    background: var(--accent);
-    color: white;
-    text-align: center;
-  }
+  .cta-section { padding: 7rem 4rem; background: var(--accent); color: white; text-align: center; }
+  .cta-section h2 { color: white; font-size: clamp(2.2rem, 4vw, 3.2rem); max-width: 700px; margin: 0 auto 1.5rem; }
+  .cta-section p { color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 2.5rem; font-size: 1rem; line-height: 1.75; }
 
-  .cta-section h2 {
-    color: white; font-size: clamp(2.2rem, 4vw, 3.2rem);
-    max-width: 700px; margin: 0 auto 1.5rem;
-  }
-
-  .cta-section p {
-    color: rgba(255,255,255,0.75);
-    max-width: 480px; margin: 0 auto 2.5rem;
-    font-size: 1rem; line-height: 1.7;
-  }
-
-  .cta-form {
-    display: flex; gap: 0.6rem;
-    max-width: 420px; margin: 0 auto;
-  }
-
+  .cta-form { display: flex; gap: 0.6rem; max-width: 420px; margin: 0 auto; }
   .cta-form input {
-    flex: 1;
-    padding: 0.85rem 1.2rem;
-    border: 1.5px solid rgba(255,255,255,0.3);
-    border-radius: 12px;
-    background: rgba(255,255,255,0.15);
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    outline: none;
+    flex: 1; padding: 0.85rem 1.2rem;
+    border: 1.5px solid rgba(255,255,255,0.3); border-radius: 12px;
+    background: rgba(255,255,255,0.15); color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; outline: none;
     backdrop-filter: blur(8px);
   }
   .cta-form input::placeholder { color: rgba(255,255,255,0.5); }
   .cta-form input:focus { border-color: white; }
 
   .btn-white {
-    padding: 0.85rem 1.6rem;
-    background: white;
-    color: var(--accent);
-    border: none;
-    border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem; font-weight: 600;
-    cursor: none;
-    transition: transform 0.2s, opacity 0.2s;
-    white-space: nowrap;
+    padding: 0.85rem 1.6rem; background: white; color: var(--accent);
+    border: none; border-radius: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 700; cursor: none;
+    transition: transform 0.2s, opacity 0.2s; white-space: nowrap;
   }
   .btn-white:hover { transform: translateY(-1px); opacity: 0.95; }
 
-  /* FOOTER */
   footer {
-    background: var(--ink);
-    color: #7a7060;
+    background: var(--ink); color: #7a7060;
     padding: 2.5rem 4rem;
     display: flex; justify-content: space-between; align-items: center;
     font-size: 0.8rem;
   }
-
-  footer a {
-    color: inherit; text-decoration: none;
-    transition: color 0.2s;
-  }
+  footer a { color: inherit; text-decoration: none; transition: color 0.2s; }
   footer a:hover { color: var(--cream); }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  .reveal {
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     nav ul { display: none; }
     .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; }
     .hero-left { padding-right: 0; }
     .hero-right { display: none; }
-    .section, .compare-section, .features-section,
-    .pricing-section, .testimonials-section, .cta-section { padding: 4rem 1.5rem; }
+    .section, .compare-section, .features-section, .pricing-section, .testimonials-section, .cta-section { padding: 4rem 1.5rem; }
     .problem-grid, .features-grid, .pricing-grid, .testi-grid { grid-template-columns: 1fr; }
     .stats-bar { padding: 1.5rem; gap: 2rem; flex-wrap: wrap; }
     .compare-head, .compare-row { grid-template-columns: 1.5fr 1fr 1fr; }
     .compare-head > *:last-child, .compare-row > *:last-child { display: none; }
-    .hero-form { flex-direction: column; }
-    .cta-form { flex-direction: column; }
+    .hero-form, .cta-form { flex-direction: column; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
   }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
 
 <div class="cursor" id="cursor"></div>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="logo">Prenot<span>ello</span></a>
   <ul>
@@ -736,7 +540,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <div class="tag"><span class="tag-dot"></span> Zero commissioni, sempre</div>
@@ -788,40 +591,26 @@
       </div>
       <div class="mock-floating2">
         <div>💶</div>
-        <div><strong>€0</strong> <br><span style="font-size:0.65rem;color:#9a9080">commissioni oggi</span></div>
+        <div><strong>€0</strong><br><span style="font-size:0.65rem;color:#9a9080">commissioni oggi</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS BAR -->
 <div class="stats-bar">
-  <div class="stat-item">
-    <span class="stat-num">€0</span>
-    <span class="stat-label">commissioni sulle prenotazioni</span>
-  </div>
+  <div class="stat-item"><span class="stat-num">€0</span><span class="stat-label">commissioni sulle prenotazioni</span></div>
   <div class="stat-div"></div>
-  <div class="stat-item">
-    <span class="stat-num">-32%</span>
-    <span class="stat-label">no-show con i reminder WhatsApp</span>
-  </div>
+  <div class="stat-item"><span class="stat-num">-32%</span><span class="stat-label">no-show con i reminder WhatsApp</span></div>
   <div class="stat-div"></div>
-  <div class="stat-item">
-    <span class="stat-num">10 min</span>
-    <span class="stat-label">per configurare tutto</span>
-  </div>
+  <div class="stat-item"><span class="stat-num">10 min</span><span class="stat-label">per configurare tutto</span></div>
   <div class="stat-div"></div>
-  <div class="stat-item">
-    <span class="stat-num">100%</span>
-    <span class="stat-label">i tuoi clienti, solo tuoi</span>
-  </div>
+  <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">i tuoi clienti, solo tuoi</span></div>
 </div>
 
-<!-- PROBLEM -->
 <section class="section" id="come-funziona">
   <p class="section-label reveal">Il problema</p>
   <h2 class="reveal">Gli altri software sono gratis.<br>Finché non lo sono più.</h2>
-  <p style="color:var(--muted);max-width:540px;line-height:1.7;font-size:0.95rem" class="reveal">Gli strumenti di prenotazione esistenti hanno un modello semplice: ti attraggono con prezzi bassi, poi alzano le commissioni quando sei già dipendente. Tu paghi ogni volta che arriva un cliente.</p>
+  <p style="color:var(--muted);max-width:540px;line-height:1.75;font-size:0.95rem" class="reveal">Gli strumenti di prenotazione esistenti hanno un modello semplice: ti attraggono con prezzi bassi, poi alzano le commissioni quando sei già dipendente. Tu paghi ogni volta che arriva un cliente.</p>
   <div class="problem-grid">
     <div class="problem-card reveal">
       <span class="prob-number">20%</span>
@@ -850,7 +639,6 @@
   </div>
 </section>
 
-<!-- COMPARE -->
 <section class="compare-section" id="confronto">
   <p class="section-label reveal">Confronto</p>
   <h2 class="reveal">Prenotello vs gli altri</h2>
@@ -861,90 +649,29 @@
       <div>Competitor 1</div>
       <div>Competitor 2</div>
     </div>
-    <div class="compare-row">
-      <div class="feature">Prezzo mensile</div>
-      <div class="col-highlight">19–69€</div>
-      <div>~20€</div>
-      <div>~30€+</div>
-    </div>
-    <div class="compare-row">
-      <div class="feature">Commissioni prenotazioni</div>
-      <div class="col-highlight"><span class="check">✓ Zero</span></div>
-      <div><span class="cross">✗ fino al 20%</span></div>
-      <div><span class="cross">✗ fino al 35%</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="feature">Dati clienti tuoi</div>
-      <div class="col-highlight"><span class="check">✓ Sempre</span></div>
-      <div><span class="cross">✗ Condivisi</span></div>
-      <div><span class="cross">✗ Condivisi</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="feature">Reminder WhatsApp</div>
-      <div class="col-highlight"><span class="check">✓ Incluso</span></div>
-      <div><span class="partial">Solo piano Plus</span></div>
-      <div><span class="cross">✗</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="feature">Interfaccia in italiano</div>
-      <div class="col-highlight"><span class="check">✓ Nativo</span></div>
-      <div><span class="partial">Parziale</span></div>
-      <div><span class="check">✓</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="feature">Setup senza tecnici</div>
-      <div class="col-highlight"><span class="check">✓ 10 minuti</span></div>
-      <div><span class="partial">~1 ora</span></div>
-      <div><span class="cross">✗ Complesso</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="feature">Supporto in italiano</div>
-      <div class="col-highlight"><span class="check">✓ Diretto</span></div>
-      <div><span class="cross">✗ Solo email EN</span></div>
-      <div><span class="partial">Parziale</span></div>
-    </div>
+    <div class="compare-row"><div class="feature">Prezzo mensile</div><div class="col-highlight">19–69€</div><div>~20€</div><div>~30€+</div></div>
+    <div class="compare-row"><div class="feature">Commissioni prenotazioni</div><div class="col-highlight"><span class="check">✓ Zero</span></div><div><span class="cross">✗ fino al 20%</span></div><div><span class="cross">✗ fino al 35%</span></div></div>
+    <div class="compare-row"><div class="feature">Dati clienti tuoi</div><div class="col-highlight"><span class="check">✓ Sempre</span></div><div><span class="cross">✗ Condivisi</span></div><div><span class="cross">✗ Condivisi</span></div></div>
+    <div class="compare-row"><div class="feature">Reminder WhatsApp</div><div class="col-highlight"><span class="check">✓ Incluso</span></div><div><span class="partial">Solo piano Plus</span></div><div><span class="cross">✗</span></div></div>
+    <div class="compare-row"><div class="feature">Interfaccia in italiano</div><div class="col-highlight"><span class="check">✓ Nativo</span></div><div><span class="partial">Parziale</span></div><div><span class="check">✓</span></div></div>
+    <div class="compare-row"><div class="feature">Setup senza tecnici</div><div class="col-highlight"><span class="check">✓ 10 minuti</span></div><div><span class="partial">~1 ora</span></div><div><span class="cross">✗ Complesso</span></div></div>
+    <div class="compare-row"><div class="feature">Supporto in italiano</div><div class="col-highlight"><span class="check">✓ Diretto</span></div><div><span class="cross">✗ Solo email EN</span></div><div><span class="partial">Parziale</span></div></div>
   </div>
 </section>
 
-<!-- FEATURES -->
 <section class="features-section">
   <p class="section-label reveal">Funzionalità</p>
   <h2 class="reveal">Tutto quello che serve,<br>niente di superfluo</h2>
   <div class="features-grid">
-    <div class="feat-card reveal">
-      <div class="feat-icon">📅</div>
-      <div class="feat-title">Agenda digitale</div>
-      <p class="feat-text">Calendario settimanale e giornaliero, gestione di più professionisti e risorse, sincronizzazione con Google Calendar.</p>
-    </div>
-    <div class="feat-card reveal">
-      <div class="feat-icon">🔗</div>
-      <div class="feat-title">Link di prenotazione</div>
-      <p class="feat-text">Un link da condividere su Instagram, WhatsApp o Google Business. Il cliente sceglie servizio, data e ora in autonomia, 24/7.</p>
-    </div>
-    <div class="feat-card reveal">
-      <div class="feat-icon">💬</div>
-      <div class="feat-title">Reminder WhatsApp automatici</div>
-      <p class="feat-text">Messaggio automatico 48h e 2h prima dell'appuntamento. Il cliente conferma o cancella con un tap. No-show ridotti fino al 32%.</p>
-    </div>
-    <div class="feat-card reveal">
-      <div class="feat-icon">👥</div>
-      <div class="feat-title">Scheda cliente</div>
-      <p class="feat-text">Storico completo degli appuntamenti, note personalizzate, preferenze. Tutto in un posto, accessibile da telefono.</p>
-    </div>
-    <div class="feat-card reveal">
-      <div class="feat-icon">💳</div>
-      <div class="feat-title">Caparra online</div>
-      <p class="feat-text">Richiedi un deposito al momento della prenotazione. Addio no-show definitivamente. Gestione rimborsi inclusa.</p>
-    </div>
-    <div class="feat-card reveal">
-      <div class="feat-icon">📊</div>
-      <div class="feat-title">Report semplici</div>
-      <p class="feat-text">Entrate mensili, servizi più prenotati, clienti top. Numeri chiari senza dover fare i conti su un foglio Excel.</p>
-    </div>
+    <div class="feat-card reveal"><div class="feat-icon">📅</div><div class="feat-title">Agenda digitale</div><p class="feat-text">Calendario settimanale e giornaliero, gestione di più professionisti e risorse, sincronizzazione con Google Calendar.</p></div>
+    <div class="feat-card reveal"><div class="feat-icon">🔗</div><div class="feat-title">Link di prenotazione</div><p class="feat-text">Un link da condividere su Instagram, WhatsApp o Google Business. Il cliente sceglie servizio, data e ora in autonomia, 24/7.</p></div>
+    <div class="feat-card reveal"><div class="feat-icon">💬</div><div class="feat-title">Reminder WhatsApp automatici</div><p class="feat-text">Messaggio automatico 48h e 2h prima dell'appuntamento. Il cliente conferma o cancella con un tap. No-show ridotti fino al 32%.</p></div>
+    <div class="feat-card reveal"><div class="feat-icon">👥</div><div class="feat-title">Scheda cliente</div><p class="feat-text">Storico completo degli appuntamenti, note personalizzate, preferenze. Tutto in un posto, accessibile da telefono.</p></div>
+    <div class="feat-card reveal"><div class="feat-icon">💳</div><div class="feat-title">Caparra online</div><p class="feat-text">Richiedi un deposito al momento della prenotazione. Addio no-show definitivamente. Gestione rimborsi inclusa.</p></div>
+    <div class="feat-card reveal"><div class="feat-icon">📊</div><div class="feat-title">Report semplici</div><p class="feat-text">Entrate mensili, servizi più prenotati, clienti top. Numeri chiari senza dover fare i conti su un foglio Excel.</p></div>
   </div>
 </section>
 
-<!-- PRICING -->
 <section class="pricing-section" id="prezzi">
   <p class="section-label reveal">Prezzi</p>
   <h2 class="reveal">Semplice. Fisso. Senza sorprese.</h2>
@@ -954,11 +681,7 @@
       <div class="price-amount">19€</div>
       <div class="price-period">/mese · 1 professionista</div>
       <ul class="price-features">
-        <li>Agenda digitale completa</li>
-        <li>Link di prenotazione</li>
-        <li>Reminder WhatsApp + email</li>
-        <li>Scheda clienti</li>
-        <li>Zero commissioni</li>
+        <li>Agenda digitale completa</li><li>Link di prenotazione</li><li>Reminder WhatsApp + email</li><li>Scheda clienti</li><li>Zero commissioni</li>
       </ul>
       <button class="btn-outline">Inizia gratis</button>
     </div>
@@ -968,11 +691,7 @@
       <div class="price-amount">39€</div>
       <div class="price-period">/mese · fino a 4 professionisti</div>
       <ul class="price-features">
-        <li>Tutto del piano Solo</li>
-        <li>Gestione multi-professionista</li>
-        <li>Caparra online</li>
-        <li>Lista d'attesa automatica</li>
-        <li>Report e statistiche</li>
+        <li>Tutto del piano Solo</li><li>Gestione multi-professionista</li><li>Caparra online</li><li>Lista d'attesa automatica</li><li>Report e statistiche</li>
       </ul>
       <button class="btn-accent">Inizia gratis →</button>
     </div>
@@ -981,18 +700,13 @@
       <div class="price-amount">69€</div>
       <div class="price-period">/mese · fino a 10 professionisti</div>
       <ul class="price-features">
-        <li>Tutto del piano Studio</li>
-        <li>Più sedi</li>
-        <li>Accesso staff con ruoli</li>
-        <li>Supporto prioritario</li>
-        <li>Onboarding dedicato</li>
+        <li>Tutto del piano Studio</li><li>Più sedi</li><li>Accesso staff con ruoli</li><li>Supporto prioritario</li><li>Onboarding dedicato</li>
       </ul>
       <button class="btn-outline">Inizia gratis</button>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section class="testimonials-section">
   <p class="section-label reveal">Testimonianze</p>
   <h2 class="reveal">Chi lo usa già</h2>
@@ -1000,40 +714,21 @@
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">"Con il software precedente pagavo commissioni ogni volta che arrivava un cliente nuovo dalla piattaforma. Con Prenotello pago 19€ al mese, punto. Il conto è presto fatto."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background:#d4522a">LC</div>
-        <div>
-          <div class="testi-name">Lucia C.</div>
-          <div class="testi-role">Parrucchiera — Milano</div>
-        </div>
-      </div>
+      <div class="testi-author"><div class="testi-avatar" style="background:#d4522a">LC</div><div><div class="testi-name">Lucia C.</div><div class="testi-role">Parrucchiera — Milano</div></div></div>
     </div>
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">"I reminder WhatsApp automatici hanno quasi azzerato i no-show. Prima perdevo 3-4 appuntamenti a settimana. Ora rarissimamente."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background:#2a6e4a">MR</div>
-        <div>
-          <div class="testi-name">Marco R.</div>
-          <div class="testi-role">Fisioterapista — Roma</div>
-        </div>
-      </div>
+      <div class="testi-author"><div class="testi-avatar" style="background:#2a6e4a">MR</div><div><div class="testi-name">Marco R.</div><div class="testi-role">Fisioterapista — Roma</div></div></div>
     </div>
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Setup fatto in un quarto d'ora. Il link di prenotazione lo metto nelle storie Instagram e i clienti prenotano da soli mentre sono in servizio. Una comodità enorme."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background:#7a4a9a">SF</div>
-        <div>
-          <div class="testi-name">Sara F.</div>
-          <div class="testi-role">Estetista — Torino</div>
-        </div>
-      </div>
+      <p class="testi-text">"Setup fatto in un quarto d'ora. Il link di prenotazione lo metto nelle storie Instagram e i clienti prenotano da soli mentre sono in servizio."</p>
+      <div class="testi-author"><div class="testi-avatar" style="background:#7a4a9a">SF</div><div><div class="testi-name">Sara F.</div><div class="testi-role">Estetista — Torino</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
 <section class="cta-section">
   <h2 class="reveal">Inizia oggi.<br>Gratis per 30 giorni.</h2>
   <p class="reveal">Nessuna carta di credito. Nessun contratto. Se dopo 30 giorni non ti piace, smetti — senza perdere nessun dato.</p>
@@ -1043,18 +738,12 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div>© 2026 <strong style="color:var(--cream)">Prenotello</strong> · Gestionale prenotazioni per professionisti</div>
-  <div style="display:flex;gap:2rem">
-    <a href="#">Privacy</a>
-    <a href="#">Termini</a>
-    <a href="#">Contatti</a>
-  </div>
+  <div style="display:flex;gap:2rem"><a href="#">Privacy</a><a href="#">Termini</a><a href="#">Contatti</a></div>
 </footer>
 
 <script>
-  // Custom cursor
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
@@ -1065,16 +754,11 @@
     el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
   });
 
-  // Scroll reveal
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Form submit
   document.querySelectorAll('button.btn-primary, button.btn-accent, button.btn-white').forEach(btn => {
     btn.addEventListener('click', () => {
       const input = btn.previousElementSibling;
@@ -1082,9 +766,7 @@
         if (input.value && input.value.includes('@')) {
           btn.textContent = '✓ Iscritto!';
           btn.style.background = '#2a6e4a';
-          input.value = '';
-          input.disabled = true;
-          btn.disabled = true;
+          input.value = ''; input.disabled = true; btn.disabled = true;
         } else {
           input.style.borderColor = 'var(--accent)';
           input.placeholder = 'Inserisci una email valida';
