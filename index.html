@@ -629,7 +629,8 @@
     <div class="tag"><span class="tag-dot"></span> Zero commissioni, sempre</div>
     <h1>Prenotazioni<br>senza <em>trappole</em></h1>
     <p class="hero-sub">Il gestionale per saloni, centri estetici, studi e professionisti che non ti prende una percentuale ogni volta che entra un cliente.</p>
-    <form class="hero-form" id="form-hero" novalidate>
+    <form class="hero-form" id="form-hero" name="iscrizioni" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="bot-field" />
       <input type="email" id="email-hero" name="email" placeholder="La tua email" required autocomplete="email" />
       <button type="submit" class="btn-primary">Inizia gratis →</button>
     </form>
@@ -821,7 +822,8 @@
 <section class="cta-section">
   <h2 class="reveal">Inizia oggi.<br>Gratis per 30 giorni.</h2>
   <p class="reveal">Nessuna carta di credito. Nessun contratto. Se dopo 30 giorni non ti piace, smetti — senza perdere nessun dato.</p>
-  <form class="cta-form reveal" id="form-cta" novalidate>
+  <form class="cta-form reveal" id="form-cta" name="iscrizioni" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+    <input type="hidden" name="bot-field" />
     <input type="email" id="email-cta" name="email" placeholder="La tua email" required autocomplete="email" />
     <button type="submit" class="btn-white">Inizia gratis →</button>
   </form>
@@ -855,51 +857,10 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ── BREVO API KEY ── sostituisci con la tua chiave API Brevo
-  const BREVO_API_KEY = 'TUA_API_KEY_BREVO';
-  // ── BREVO LIST ID ── sostituisci con l'ID della tua lista Brevo
-  const BREVO_LIST_ID = 2;
-
-  async function subscribeEmail(email, btnEl, errorEl) {
-    btnEl.disabled = true;
-    btnEl.textContent = 'Iscrizione...';
-    errorEl.textContent = '';
-
-    try {
-      const res = await fetch('https://api.brevo.com/v3/contacts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'api-key': BREVO_API_KEY
-        },
-        body: JSON.stringify({
-          email: email,
-          listIds: [BREVO_LIST_ID],
-          updateEnabled: true,
-          attributes: { SORGENTE: 'Prenotello Landing' }
-        })
-      });
-
-      if (res.ok || res.status === 204) {
-        btnEl.textContent = '✓ Iscritto!';
-        btnEl.style.background = '#2a6e4a';
-        btnEl.style.color = 'white';
-      } else {
-        const data = await res.json();
-        throw new Error(data.message || 'Errore server');
-      }
-    } catch (err) {
-      btnEl.disabled = false;
-      btnEl.textContent = 'Inizia gratis →';
-      errorEl.textContent = 'Errore: ' + err.message + '. Riprova o contattaci.';
-    }
-  }
-
   function setupForm(formId, emailId, privacyId, errorId) {
     const form = document.getElementById(formId);
     if (!form) return;
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
+    form.addEventListener('submit', e => {
       const emailEl = document.getElementById(emailId);
       const privacyEl = document.getElementById(privacyId);
       const errorEl = document.getElementById(errorId);
@@ -908,19 +869,21 @@
       errorEl.textContent = '';
 
       if (!emailEl.value || !emailEl.value.includes('@')) {
+        e.preventDefault();
         errorEl.textContent = 'Inserisci un indirizzo email valido.';
         emailEl.focus();
         return;
       }
       if (!privacyEl.checked) {
+        e.preventDefault();
         errorEl.textContent = 'Devi accettare la Privacy Policy per continuare.';
         privacyEl.focus();
         return;
       }
 
-      await subscribeEmail(emailEl.value.trim(), btn, errorEl);
-      emailEl.value = '';
-      emailEl.disabled = true;
+      // validazione ok: Netlify Forms gestisce l'invio in modo nativo
+      btn.disabled = true;
+      btn.textContent = 'Invio in corso...';
     });
   }
 
