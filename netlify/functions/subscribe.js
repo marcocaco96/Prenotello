@@ -1,6 +1,6 @@
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return { statusCode: 405, body: 'Method not allowed' };
   }
 
   const { email } = JSON.parse(event.body);
@@ -13,8 +13,9 @@ exports.handler = async (event) => {
     },
     body: JSON.stringify({
       email,
-      listIds: [3],
-      updateEnabled: true
+      listIds: [parseInt(process.env.BREVO_LIST_ID)],
+      updateEnabled: true,
+      attributes: { SORGENTE: 'Prenotello Landing' }
     })
   });
 
@@ -22,6 +23,6 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: JSON.stringify({ success: true }) };
   }
 
-  const err = await res.json();
-  return { statusCode: 400, body: JSON.stringify({ error: err.message }) };
+  const data = await res.json();
+  return { statusCode: 400, body: JSON.stringify({ error: data.message }) };
 };
