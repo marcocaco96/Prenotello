@@ -857,35 +857,33 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  function setupForm(formId, emailId, privacyId, errorId) {
-    const form = document.getElementById(formId);
-    if (!form) return;
-    form.addEventListener('submit', e => {
-      const emailEl = document.getElementById(emailId);
-      const privacyEl = document.getElementById(privacyId);
-      const errorEl = document.getElementById(errorId);
-      const btn = form.querySelector('button[type="submit"]');
+  async function subscribeEmail(email, btnEl, errorEl) {
+  btnEl.disabled = true;
+  btnEl.textContent = 'Iscrizione...';
+  errorEl.textContent = '';
 
-      errorEl.textContent = '';
-
-      if (!emailEl.value || !emailEl.value.includes('@')) {
-        e.preventDefault();
-        errorEl.textContent = 'Inserisci un indirizzo email valido.';
-        emailEl.focus();
-        return;
-      }
-      if (!privacyEl.checked) {
-        e.preventDefault();
-        errorEl.textContent = 'Devi accettare la Privacy Policy per continuare.';
-        privacyEl.focus();
-        return;
-      }
-
-      // validazione ok: Netlify Forms gestisce l'invio in modo nativo
-      btn.disabled = true;
-      btn.textContent = 'Invio in corso...';
+  try {
+    const res = await fetch('/.netlify/functions/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
     });
+
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      btnEl.textContent = '✓ Iscritto!';
+      btnEl.style.background = '#2a6e4a';
+      btnEl.style.color = 'white';
+    } else {
+      throw new Error(data.error || 'Errore server');
+    }
+  } catch (err) {
+    btnEl.disabled = false;
+    btnEl.textContent = 'Inizia gratis →';
+    errorEl.textContent = 'Errore: ' + err.message + '. Riprova o contattaci.';
   }
+}
 
   setupForm('form-hero', 'email-hero', 'privacy-hero', 'error-hero');
   setupForm('form-cta', 'email-cta', 'privacy-cta', 'error-cta');
