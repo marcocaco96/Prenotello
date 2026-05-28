@@ -509,6 +509,33 @@
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* PRIVACY & FORM */
+  .privacy-label {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    margin-top: 0.9rem;
+    font-size: 0.75rem; line-height: 1.5;
+    color: var(--muted);
+    max-width: 460px;
+    cursor: pointer;
+  }
+  .privacy-label input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 16px; height: 16px;
+    margin-top: 2px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .privacy-label a { color: var(--accent); text-decoration: underline; }
+  .privacy-label--light { color: rgba(255,255,255,0.7); max-width: 420px; margin-inline: auto; }
+  .privacy-label--light a { color: white; }
+
+  .form-error {
+    font-size: 0.75rem; color: var(--accent);
+    margin-top: 0.4rem; min-height: 1rem;
+    max-width: 460px;
+  }
+  .form-error--light { color: rgba(255,255,255,0.9); margin-inline: auto; }
+
   /* ── TABLET (max 900px) ── */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
@@ -602,10 +629,15 @@
     <div class="tag"><span class="tag-dot"></span> Zero commissioni, sempre</div>
     <h1>Prenotazioni<br>senza <em>trappole</em></h1>
     <p class="hero-sub">Il gestionale per saloni, centri estetici, studi e professionisti che non ti prende una percentuale ogni volta che entra un cliente.</p>
-    <div class="hero-form">
-      <input type="email" placeholder="La tua email" />
-      <button class="btn-primary">Inizia gratis →</button>
-    </div>
+    <form class="hero-form" id="form-hero" novalidate>
+      <input type="email" id="email-hero" name="email" placeholder="La tua email" required autocomplete="email" />
+      <button type="submit" class="btn-primary">Inizia gratis →</button>
+    </form>
+    <label class="privacy-label" for="privacy-hero">
+      <input type="checkbox" id="privacy-hero" required />
+      <span>Ho letto e accetto la <a href="#privacy" target="_blank">Privacy Policy</a>. Acconsento all'inserimento della mia email in una lista per finalità commerciali e promozionali.</span>
+    </label>
+    <p class="form-error" id="error-hero" aria-live="polite"></p>
     <p class="hero-note">✓ <strong>30 giorni gratis</strong>, nessuna carta richiesta &nbsp;·&nbsp; Setup in 10 minuti</p>
   </div>
   <div class="hero-right">
@@ -789,10 +821,15 @@
 <section class="cta-section">
   <h2 class="reveal">Inizia oggi.<br>Gratis per 30 giorni.</h2>
   <p class="reveal">Nessuna carta di credito. Nessun contratto. Se dopo 30 giorni non ti piace, smetti — senza perdere nessun dato.</p>
-  <div class="cta-form reveal">
-    <input type="email" placeholder="La tua email" />
-    <button class="btn-white">Inizia gratis →</button>
-  </div>
+  <form class="cta-form reveal" id="form-cta" novalidate>
+    <input type="email" id="email-cta" name="email" placeholder="La tua email" required autocomplete="email" />
+    <button type="submit" class="btn-white">Inizia gratis →</button>
+  </form>
+  <label class="privacy-label privacy-label--light" for="privacy-cta">
+    <input type="checkbox" id="privacy-cta" required />
+    <span>Ho letto e accetto la <a href="#privacy" target="_blank">Privacy Policy</a>. Acconsento all'inserimento della mia email in una lista per finalità commerciali e promozionali.</span>
+  </label>
+  <p class="form-error form-error--light" id="error-cta" aria-live="polite"></p>
 </section>
 
 <footer>
@@ -801,36 +838,94 @@
 </footer>
 
 <script>
+  // ── CURSOR ──
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
   });
-  document.querySelectorAll('a, button, input').forEach(el => {
+  document.querySelectorAll('a, button, input, label').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('big'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
   });
 
+  // ── SCROLL REVEAL ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  document.querySelectorAll('button.btn-primary, button.btn-accent, button.btn-white').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const input = btn.previousElementSibling;
-      if (input && input.type === 'email') {
-        if (input.value && input.value.includes('@')) {
-          btn.textContent = '✓ Iscritto!';
-          btn.style.background = '#2a6e4a';
-          input.value = ''; input.disabled = true; btn.disabled = true;
-        } else {
-          input.style.borderColor = 'var(--accent)';
-          input.placeholder = 'Inserisci una email valida';
-        }
+  // ── BREVO API KEY ── sostituisci con la tua chiave API Brevo
+  const BREVO_API_KEY = 'TUA_API_KEY_BREVO';
+  // ── BREVO LIST ID ── sostituisci con l'ID della tua lista Brevo
+  const BREVO_LIST_ID = 2;
+
+  async function subscribeEmail(email, btnEl, errorEl) {
+    btnEl.disabled = true;
+    btnEl.textContent = 'Iscrizione...';
+    errorEl.textContent = '';
+
+    try {
+      const res = await fetch('https://api.brevo.com/v3/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'api-key': BREVO_API_KEY
+        },
+        body: JSON.stringify({
+          email: email,
+          listIds: [BREVO_LIST_ID],
+          updateEnabled: true,
+          attributes: { SORGENTE: 'Prenotello Landing' }
+        })
+      });
+
+      if (res.ok || res.status === 204) {
+        btnEl.textContent = '✓ Iscritto!';
+        btnEl.style.background = '#2a6e4a';
+        btnEl.style.color = 'white';
+      } else {
+        const data = await res.json();
+        throw new Error(data.message || 'Errore server');
       }
+    } catch (err) {
+      btnEl.disabled = false;
+      btnEl.textContent = 'Inizia gratis →';
+      errorEl.textContent = 'Errore: ' + err.message + '. Riprova o contattaci.';
+    }
+  }
+
+  function setupForm(formId, emailId, privacyId, errorId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const emailEl = document.getElementById(emailId);
+      const privacyEl = document.getElementById(privacyId);
+      const errorEl = document.getElementById(errorId);
+      const btn = form.querySelector('button[type="submit"]');
+
+      errorEl.textContent = '';
+
+      if (!emailEl.value || !emailEl.value.includes('@')) {
+        errorEl.textContent = 'Inserisci un indirizzo email valido.';
+        emailEl.focus();
+        return;
+      }
+      if (!privacyEl.checked) {
+        errorEl.textContent = 'Devi accettare la Privacy Policy per continuare.';
+        privacyEl.focus();
+        return;
+      }
+
+      await subscribeEmail(emailEl.value.trim(), btn, errorEl);
+      emailEl.value = '';
+      emailEl.disabled = true;
     });
-  });
+  }
+
+  setupForm('form-hero', 'email-hero', 'privacy-hero', 'error-hero');
+  setupForm('form-cta', 'email-cta', 'privacy-cta', 'error-cta');
 </script>
 </body>
 </html>
